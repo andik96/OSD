@@ -16,7 +16,7 @@
 // INCLUDES
 
 #include <iostream>
-#include <wiringPi.hpp>
+#include <wiringPi.h>
 #include "Player.hpp"
 
 

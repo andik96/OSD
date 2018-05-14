@@ -12,6 +12,7 @@
 ********************************/
 
 #pragma once
+#include "json.hpp"
 
 
 // #################################### SECTION BREAK ####################################
@@ -30,6 +31,6 @@ public:
 	Io_manager& operator = (Io_manager&& rhs) noexcept;
 	~Io_manager();
 
-	void reserve(int pin);
-	void release(int pin);
+	void reserve(nlohmann::json pins_config);
+	//void release(int pin);
 };

@@ -22,7 +22,8 @@
 #include "IPlayer.hpp"
 #include "Player.hpp"
 #include "main.hpp"
-#include "Game.hpp"
+#include "IoManager.hpp"
+//#include "Game.hpp"
 
 // ===============================================================
 // DEFINES
@@ -58,11 +59,11 @@ void prepare_round(void);
 
 int main(void)
 {
-	pins_config = get_pins();
+	pins_config = get_pins().get<int>; //  .get<int> hinzugefügt
 
 	Player player_1{ pins_config["player_1_button"], pins_config["player_1_led"], "P1", 0 };
 	Player player_2{ pins_config["player_1_button"], pins_config["player_1_led"], "P2", 0 };
-	Game Game();
+	//Game Game();
 	Winner winner = tie;
 	short game_rounds = 0;
 
