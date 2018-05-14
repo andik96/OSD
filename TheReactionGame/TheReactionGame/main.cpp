@@ -8,7 +8,7 @@
 #       WINKLER  Andreas         #
 #                                #
 #   created: 2018/04/18          #
-#   Version: 2018/05/13 - V6.6   #
+#   Version: 2018/05/14 - V6.7   #
 \********************************/
 
 
@@ -36,6 +36,12 @@ constexpr unsigned short led_winner_time = 3000;
 // GLOBAL VARIABLES
 
 nlohmann::json pins_config;
+int buzzer;
+int game_led;
+int player_1_button;
+int player_2_button;
+int player_1_led;
+int player_2_led;
 
 
 // ===============================================================
@@ -58,10 +64,15 @@ void prepare_round(void);
 
 int main(void)
 {
-	pins_config = get_pins();
+	buzzer = get_pins()["buzzer"].get<int>();
+	game_led = get_pins()["game_led"].get<int>();
+	player_1_button = get_pins()["player_1_button"].get<int>();
+	player_2_button = get_pins()["player_2_button"].get<int>();
+	player_1_led = get_pins()["player_1_led"].get<int>();
+	player_2_led = get_pins()["player_2_led"].get<int>();
 
-	Player player_1{ pins_config["player_1_button"], pins_config["player_1_led"], "P1", 0 };
-	Player player_2{ pins_config["player_1_button"], pins_config["player_1_led"], "P2", 0 };
+	Player player_1{ player_1_button, player_1_led, "P1", 0 };
+	Player player_2{ player_2_button, player_2_led, "P2", 0 };
 	Game Game();
 	Winner winner = tie;
 	short game_rounds = 0;
@@ -87,8 +98,8 @@ void setup_pi(IPlayer& player_1, IPlayer& player_2)
 	wiringPiSetup();
 
 	// initialize all in- and outputs here
-	pinMode(pins_config["buzzer"], OUTPUT);
-	pinMode(pins_config["game_led"], OUTPUT);
+	pinMode(buzzer, OUTPUT);
+	pinMode(game_led, OUTPUT);
 	pinMode(player_1.read_led_pin(), OUTPUT);
 	pinMode(player_2.read_led_pin(), OUTPUT);
 
@@ -111,10 +122,10 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds)
 		int64_t start_time_us = 0;
 		unsigned short timeout = 0;
 		unsigned short random_t = 0;
-		short game_led_on = 0;
+		bool game_led_on = false;
 		Winner round_winner = tie;
 		
-		digitalWrite(pins_config["game_led"], 0);
+		digitalWrite(game_led, LOW);
 		random_t = rand() % 5000 + 5000; // to activate between 5-10 seconds
 		timeout = random_t + max_time_inactive;
 
@@ -126,7 +137,7 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds)
 
 
 		while (true)
-		{ // MFA avoid busy waiting!
+		{
 			now = std::chrono::system_clock::now().time_since_epoch();
 			auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(now).count() - start_time_us;
 
@@ -136,11 +147,8 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds)
 			}
 			else if (delta >= random_t)
 			{
-				if (!game_led_on)
-				{
-					game_led_on = 1;
-					digitalWrite(pins_config["game_led"], 1);
-				}
+				if (!digitalRead(game_led))
+					digitalWrite(game_led, HIGH);
 
 				if (player_1.read_button_state() == LOW)
 				{
@@ -172,7 +180,7 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds)
 			}
 			delay(1);
 		}
-		digitalWrite(pins_config["game_led"], 0);
+		digitalWrite(game_led, LOW);
 		who_won_round(round_winner, player_1, player_2);
 
 		if (player_1.read_wins() > game_rounds / 2)
@@ -244,17 +252,17 @@ void end_of_game(Winner winner, IPlayer& player_1, IPlayer& player_2)
 
 void prepare_round()
 {
-	digitalWrite(pins_config["buzzer"], 1);
+	digitalWrite(buzzer, HIGH);
 	delay(150);
-	digitalWrite(pins_config["buzzer"], 0);
+	digitalWrite(buzzer, LOW);
 	delay(250);
-	digitalWrite(pins_config["buzzer"], 1);
+	digitalWrite(buzzer, HIGH);
 	delay(150);
-	digitalWrite(pins_config["buzzer"], 0);
+	digitalWrite(buzzer, LOW);
 	delay(250);
-	digitalWrite(pins_config["buzzer"], 1);
+	digitalWrite(buzzer, HIGH);
 	delay(400);
-	digitalWrite(pins_config["buzzer"], 0);
+	digitalWrite(buzzer, LOW);
 }
 
 // ===============================================================

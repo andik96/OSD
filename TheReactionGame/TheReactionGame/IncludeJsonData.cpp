@@ -31,7 +31,5 @@ nlohmann::json get_pins()
 	std::ifstream pins_file("pins.json", std::ifstream::binary);
 	pins_file >> pins;
 
-	int p1_led = pins["p1_led"].get<int>();		// has to be put into main.cpp
-
 	return pins;
 }
