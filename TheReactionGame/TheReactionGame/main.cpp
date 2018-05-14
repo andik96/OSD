@@ -123,6 +123,7 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds)
 		int64_t start_time_us = 0;
 		unsigned short timeout = 0;
 		unsigned short random_t = 0;
+		bool game_led_on = false;
 		Winner round_winner = tie;
 		
 		digitalWrite(game_led, LOW);
