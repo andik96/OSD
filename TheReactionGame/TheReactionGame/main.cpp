@@ -22,7 +22,8 @@
 #include "IPlayer.hpp"
 #include "Player.hpp"
 #include "main.hpp"
-#include "Game.hpp"
+#include "IoManager.hpp"
+//#include "Game.hpp"
 
 // ===============================================================
 // DEFINES
