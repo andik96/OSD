@@ -28,7 +28,7 @@
 nlohmann::json get_pins()
 {
 	nlohmann::json pins;
-	std::ifstream pins_file("pins.json", std::ifstream::binary);
+	std::ifstream pins_file("pins.json");
 	pins_file >> pins;
 
 	return pins;

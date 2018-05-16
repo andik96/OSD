@@ -5,16 +5,48 @@ VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TheReactionGame", "TheReactionGame\TheReactionGame.vcxproj", "{AF2B83D9-FF48-408B-9C70-B6503B6FB090}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactionGameLib", "ReactionGameLib\ReactionGameLib.vcxproj", "{72AD0C98-1280-4345-8949-E980853646E6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactionGameWin", "ReactionGameWin\ReactionGameWin.vcxproj", "{1327D27B-77D6-43EF-819A-C05FD8C84E99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AF2B83D9-FF48-408B-9C70-B6503B6FB090}.Debug|ARM.ActiveCfg = Debug|ARM
 		{AF2B83D9-FF48-408B-9C70-B6503B6FB090}.Debug|ARM.Build.0 = Debug|ARM
+		{AF2B83D9-FF48-408B-9C70-B6503B6FB090}.Debug|x64.ActiveCfg = Debug|ARM
+		{AF2B83D9-FF48-408B-9C70-B6503B6FB090}.Debug|x86.ActiveCfg = Debug|ARM
 		{AF2B83D9-FF48-408B-9C70-B6503B6FB090}.Release|ARM.ActiveCfg = Release|ARM
 		{AF2B83D9-FF48-408B-9C70-B6503B6FB090}.Release|ARM.Build.0 = Release|ARM
+		{AF2B83D9-FF48-408B-9C70-B6503B6FB090}.Release|x64.ActiveCfg = Release|ARM
+		{AF2B83D9-FF48-408B-9C70-B6503B6FB090}.Release|x86.ActiveCfg = Release|ARM
+		{72AD0C98-1280-4345-8949-E980853646E6}.Debug|ARM.ActiveCfg = Debug|Win32
+		{72AD0C98-1280-4345-8949-E980853646E6}.Debug|x64.ActiveCfg = Debug|x64
+		{72AD0C98-1280-4345-8949-E980853646E6}.Debug|x64.Build.0 = Debug|x64
+		{72AD0C98-1280-4345-8949-E980853646E6}.Debug|x86.ActiveCfg = Debug|Win32
+		{72AD0C98-1280-4345-8949-E980853646E6}.Debug|x86.Build.0 = Debug|Win32
+		{72AD0C98-1280-4345-8949-E980853646E6}.Release|ARM.ActiveCfg = Release|Win32
+		{72AD0C98-1280-4345-8949-E980853646E6}.Release|x64.ActiveCfg = Release|x64
+		{72AD0C98-1280-4345-8949-E980853646E6}.Release|x64.Build.0 = Release|x64
+		{72AD0C98-1280-4345-8949-E980853646E6}.Release|x86.ActiveCfg = Release|Win32
+		{72AD0C98-1280-4345-8949-E980853646E6}.Release|x86.Build.0 = Release|Win32
+		{1327D27B-77D6-43EF-819A-C05FD8C84E99}.Debug|ARM.ActiveCfg = Debug|Win32
+		{1327D27B-77D6-43EF-819A-C05FD8C84E99}.Debug|x64.ActiveCfg = Debug|x64
+		{1327D27B-77D6-43EF-819A-C05FD8C84E99}.Debug|x64.Build.0 = Debug|x64
+		{1327D27B-77D6-43EF-819A-C05FD8C84E99}.Debug|x86.ActiveCfg = Debug|Win32
+		{1327D27B-77D6-43EF-819A-C05FD8C84E99}.Debug|x86.Build.0 = Debug|Win32
+		{1327D27B-77D6-43EF-819A-C05FD8C84E99}.Release|ARM.ActiveCfg = Release|Win32
+		{1327D27B-77D6-43EF-819A-C05FD8C84E99}.Release|x64.ActiveCfg = Release|x64
+		{1327D27B-77D6-43EF-819A-C05FD8C84E99}.Release|x64.Build.0 = Release|x64
+		{1327D27B-77D6-43EF-819A-C05FD8C84E99}.Release|x86.ActiveCfg = Release|Win32
+		{1327D27B-77D6-43EF-819A-C05FD8C84E99}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

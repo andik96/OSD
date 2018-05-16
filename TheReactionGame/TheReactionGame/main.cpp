@@ -15,7 +15,7 @@
 // ===============================================================
 // INCLUDES
 
-#include <wiringPi.h>
+#include "piproxy.h"
 #include <iostream>		// used for writing to console
 #include <chrono>
 #include "IncludeJsonData.hpp"
@@ -39,10 +39,10 @@ constexpr unsigned short led_winner_time = 3000;
 nlohmann::json pins_config;
 int buzzer;
 int game_led;
-int player_1_button;
-int player_2_button;
-int player_1_led;
-int player_2_led;
+unsigned short player_1_button;
+unsigned short player_2_button;
+unsigned short player_1_led;
+unsigned short player_2_led;
 
 
 // ===============================================================
@@ -67,14 +67,14 @@ int main(void)
 {
 	buzzer = get_pins()["buzzer"].get<int>();
 	game_led = get_pins()["game_led"].get<int>();
-	player_1_button = get_pins()["player_1_button"].get<int>();
-	player_2_button = get_pins()["player_2_button"].get<int>();
-	player_1_led = get_pins()["player_1_led"].get<int>();
-	player_2_led = get_pins()["player_2_led"].get<int>();
+	player_1_button = get_pins()["player_1_button"].get<unsigned short>();
+	player_2_button = get_pins()["player_2_button"].get<unsigned short>();
+	player_1_led = get_pins()["player_1_led"].get<unsigned short>();
+	player_2_led = get_pins()["player_2_led"].get<unsigned short>();
 
 	Player player_1{ player_1_button, player_1_led, "P1", 0 };
 	Player player_2{ player_2_button, player_2_led, "P2", 0 };
-	Game Game();
+	//Game Game();
 	Winner winner = tie;
 	short game_rounds = 0;
 

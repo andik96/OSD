@@ -54,7 +54,7 @@ public:
 
 
 private:
-	short button_pin_;
+	unsigned short button_pin_;
 	std::string name_;
 	unsigned short wins_;
 	unsigned short led_pin_;

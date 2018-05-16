@@ -64,6 +64,7 @@
     <ClInclude Include="IPlayer.hpp" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="main.hpp" />
+    <ClInclude Include="piproxy.h" />
     <ClInclude Include="Player.hpp" />
   </ItemGroup>
   <ItemGroup>
