@@ -43,6 +43,7 @@ unsigned short player_1_button;
 unsigned short player_2_button;
 unsigned short player_1_led;
 unsigned short player_2_led;
+unsigned short json_size;
 
 
 // ===============================================================
@@ -65,6 +66,10 @@ void prepare_round(void);
 
 int main(void)
 {
+	json_size = std::size(get_pins());
+	std::cout << json_size << "\n" << std::endl;
+	std::cout << get_pins() << "\n" << std::endl;
+
 	buzzer = get_pins()["buzzer"].get<int>();
 	game_led = get_pins()["game_led"].get<int>();
 	player_1_button = get_pins()["player_1_button"].get<unsigned short>();
@@ -94,7 +99,7 @@ int main(void)
 // ===============================================================
 // SETUP FUNCTION
 
-void setup_pi(IPlayer& player_1, IPlayer& player_2)
+void setup_pi(IPlayer& player_1, IPlayer&	player_2)
 {
 	wiringPiSetup();
 

@@ -32,5 +32,7 @@ public:
 	~Io_manager();
 
 	void reserve(nlohmann::json pins_config);
-	//void release(int pin);
+	void release(int pin);
+	//Wiringpi 0-16 && 21-31 = 28 Pins
+
 };
