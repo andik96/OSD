@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/02         #
-#   Version: 2018/05/20 - V1.1  #
+#   Version: 2018/05/20 - V2.0  #
 ********************************/
 
 
@@ -16,7 +16,6 @@
 // INCLUDES
 
 #include "IoManager.hpp"
-#include "IncludeJsonData.hpp"
 
 
 // #################################### SECTION BREAK ####################################
@@ -37,6 +36,10 @@ Io_manager & Io_manager::operator = (Io_manager && rhs) noexcept
 
 Io_manager::~Io_manager()								// here all the reserved pins will be released again
 {
+	for (pin act_pin : reserved_pins_)
+	{
+		this->release(this->reserved_pins_[act_pin]);
+	}
 }
 
 
@@ -46,10 +49,13 @@ Io_manager::~Io_manager()								// here all the reserved pins will be released 
 
 // Wiringpi 0-16 && 21-31 = 28 Pins
 
-void Io_manager::reserve(nlohmann::json pins_config)
+void Io_manager::reserve(pin pin)
 {
+	/*if(! element pin found)*/
+	this->reserved_pins_.push_back;
 }
 
 void Io_manager::release(pin pin)
 {
+	this->reserved_pins_.pop_back(/*element pin found at place ...*/);
 }

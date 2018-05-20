@@ -10,9 +10,6 @@
     <ClCompile Include="IoManager.cpp">
       <Filter>Pins</Filter>
     </ClCompile>
-    <ClCompile Include="ReservedPins.cpp">
-      <Filter>Pins</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -47,9 +44,6 @@
     </ClInclude>
     <ClInclude Include="Player.hpp">
       <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="ReservedPins.hpp">
-      <Filter>Pins</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

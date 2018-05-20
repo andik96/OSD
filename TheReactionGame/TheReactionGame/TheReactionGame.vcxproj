@@ -57,7 +57,6 @@
     <ClCompile Include="IPlayer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="ReservedPins.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp" />
@@ -68,7 +67,6 @@
     <ClInclude Include="main.hpp" />
     <ClInclude Include="piproxy.h" />
     <ClInclude Include="Player.hpp" />
-    <ClInclude Include="ReservedPins.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="pins.json" />

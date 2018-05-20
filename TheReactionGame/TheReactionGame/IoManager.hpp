@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/02         #
-#   Version: 2018/05/20 - V1.1  #
+#   Version: 2018/05/20 - V2.0  #
 ********************************/
 
 #pragma once
@@ -42,9 +42,9 @@ public:
 	Io_manager& operator = (Io_manager&& rhs) noexcept;				// a pin may be released and taken by another function
 	~Io_manager();													// here the pin will be released again
 
-	void reserve(nlohmann::json pins_config);
+	void reserve(pin pin);
 	void release(pin pin);
 
 protected:
-	// reserved_pins;				object from ReservedPins.cpp
+	static std::vector<pin> reserved_pins_;							// all the pins are reserved here by their number
 };
