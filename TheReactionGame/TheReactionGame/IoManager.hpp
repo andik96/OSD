@@ -1,7 +1,7 @@
 
 /********************************
 #   THE REACTION GAME           #
-#   IoManager.h                 #
+#   IoManager.hpp               #
 #                               #
 #   Authors:                    #
 #       KEMPERLE Andreas        #
@@ -39,5 +39,7 @@ public:
 
 	void reserve(nlohmann::json pins_config);
 	void release(int pin);
-	//Wiringpi 0-16 && 21-31 = 28 Pins
+
+protected:
+	// reserved_pins;				object from ReservedPins.cpp
 };
