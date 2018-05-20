@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/04/18         #
-#   Version: 2018/05/02 - V4.1  #
+#   Version: 2018/05/20 - V5.0  #
 ********************************/
 
 
@@ -33,7 +33,7 @@ Player::Player() // MFA button_pin_, led_pin_, wins_ and current_led_state_ are 
 // ===============================================================
 // DECLARE CLASS PLAYER
 
-Player::Player(unsigned short button_pin, unsigned short led_pin, std::string name, unsigned short wins) 
+Player::Player(pin button_pin, pin led_pin, std::string name, unsigned short wins) 
 	: button_pin_{ button_pin }, led_pin_{ led_pin }, wins_{ wins }, name_{ name }
 {
 }
@@ -70,7 +70,7 @@ void Player::add_victory(void)
 }
 
 // --------- --------- --------- ---------
-unsigned short Player::read_button_pin(void) const
+pin Player::read_button_pin(void) const
 {
 	return this->button_pin_;
 }
@@ -80,12 +80,12 @@ bool Player::read_button_state(void) const
 	return digitalRead(this->read_button_pin());
 }
 // --------- --------- --------- ---------
-void Player::set_led_pin(unsigned short led_pin)
+void Player::set_led_pin(pin led_pin)
 {
 	this->led_pin_ = led_pin;
 }
 
-unsigned short Player::read_led_pin(void) const
+pin Player::read_led_pin(void) const
 {
 	return this->led_pin_;
 }

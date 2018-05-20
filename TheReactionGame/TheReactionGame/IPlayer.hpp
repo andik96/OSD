@@ -18,6 +18,7 @@
 // INCLUDES
 
 #include <iostream>
+#include "main.hpp"
 
 
 // #################################### SECTION BREAK ####################################
@@ -37,12 +38,12 @@ public:
 	virtual unsigned short read_wins(void) const = 0;
 	virtual void add_victory(void) = 0;
 	// --------- --------- --------- ---------
-	virtual unsigned short read_button_pin(void) const = 0;
+	virtual pin read_button_pin(void) const = 0;
 	// ---------
 	virtual bool read_button_state(void) const = 0;
 	// --------- --------- --------- ---------
-	virtual void set_led_pin(unsigned short led_pin) = 0;
-	virtual unsigned short read_led_pin(void) const = 0;
+	virtual void set_led_pin(pin led_pin) = 0;
+	virtual pin read_led_pin(void) const = 0;
 	// ---------
 	virtual void set_led_state(bool led_state) = 0;
 	virtual bool read_led_state(void) const = 0;

@@ -38,7 +38,7 @@ public:
 	~Io_manager();													// here the pin will be released again
 
 	void reserve(nlohmann::json pins_config);
-	void release(int pin);
+	void release(pin pin);
 
 protected:
 	// reserved_pins;				object from ReservedPins.cpp

@@ -50,6 +50,6 @@ void Io_manager::reserve(nlohmann::json pins_config)
 {
 }
 
-void Io_manager::release(int pin)
+void Io_manager::release(pin pin)
 {
 }

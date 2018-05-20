@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/04/18         #
-#   Version: 2018/05/02 - V4.1  #
+#   Version: 2018/05/20 - V5.0  #
 ********************************/
 
 #pragma once
@@ -31,7 +31,7 @@ class Player : public IPlayer
 {
 public:
 	Player();
-	Player(unsigned short button_pin, unsigned short led_pin, std::string name, unsigned short wins);
+	Player(pin button_pin, pin led_pin, std::string name, unsigned short wins);
 
 	// --------- --------- --------- ---------
 	void set_name(std::string name) override;
@@ -41,11 +41,11 @@ public:
 	unsigned short read_wins(void) const override;
 	void add_victory(void) override;
 	// --------- --------- --------- ---------
-	unsigned short read_button_pin(void) const override;
+	pin read_button_pin(void) const override;
 	// ---------
 	bool read_button_state(void) const override;
 	// --------- --------- --------- ---------
-	void set_led_pin(unsigned short led_pin) override;
+	void set_led_pin(pin led_pin) override;
 	unsigned short read_led_pin(void) const override;
 	// ---------
 	void set_led_state(bool led_state) override;
@@ -54,8 +54,8 @@ public:
 
 
 private:
-	unsigned short button_pin_;
+	pin button_pin_;
 	std::string name_;
 	unsigned short wins_;
-	unsigned short led_pin_;
+	pin led_pin_;
 };
