@@ -8,42 +8,35 @@
 #       WINKLER  Andreas         #
 #                                #
 #   created: 2018/04/18          #
-#   Version: 2018/05/14 - V6.7   #
+#   Version: 2018/05/20 - V6.8   #
 \********************************/
 
 
 // ===============================================================
 // INCLUDES
 
-#include "piproxy.h"
-#include <iostream>		// used for writing to console
-#include <chrono>
+#include "piproxy.h"			// includes depending on target platform (Pi/PC)
+#include <iostream>				// used for writing to console
+#include <chrono>				// used for timing
+
+#include "main.hpp"				// constexpressions, enums
 #include "IncludeJsonData.hpp"
 #include "IPlayer.hpp"
 #include "Player.hpp"
-#include "main.hpp"
 #include "IoManager.hpp"
 //#include "Game.hpp"
-
-// ===============================================================
-// DEFINES
-
-constexpr unsigned short max_game_rounds = 30;
-constexpr unsigned short max_time_inactive = 3000;
-constexpr unsigned short led_winner_time = 3000;
 
 
 // ===============================================================
 // GLOBAL VARIABLES
 
 nlohmann::json pins_config;
-int buzzer;
-int game_led;
-unsigned short player_1_button;
-unsigned short player_2_button;
-unsigned short player_1_led;
-unsigned short player_2_led;
-unsigned short json_size;
+pin buzzer;
+pin game_led;
+pin player_1_button;
+pin player_2_button;
+pin player_1_led;
+pin player_2_led;
 
 
 // ===============================================================
@@ -66,20 +59,15 @@ void prepare_round(void);
 
 int main(void)
 {
-	json_size = std::size(get_pins());
-	std::cout << json_size << "\n" << std::endl;
-	std::cout << get_pins() << "\n" << std::endl;
-
-	buzzer = get_pins()["buzzer"].get<int>();
-	game_led = get_pins()["game_led"].get<int>();
-	player_1_button = get_pins()["player_1_button"].get<unsigned short>();
-	player_2_button = get_pins()["player_2_button"].get<unsigned short>();
-	player_1_led = get_pins()["player_1_led"].get<unsigned short>();
-	player_2_led = get_pins()["player_2_led"].get<unsigned short>();
+	buzzer = get_pins()["buzzer"].get<pin>();
+	game_led = get_pins()["game_led"].get<pin>();
+	player_1_button = get_pins()["player_1_button"].get<pin>();
+	player_2_button = get_pins()["player_2_button"].get<pin>();
+	player_1_led = get_pins()["player_1_led"].get<pin>();
+	player_2_led = get_pins()["player_2_led"].get<pin>();
 
 	Player player_1{ player_1_button, player_1_led, "P1", 0 };
 	Player player_2{ player_2_button, player_2_led, "P2", 0 };
-	//Game Game();
 	Winner winner = tie;
 	short game_rounds = 0;
 
@@ -99,7 +87,7 @@ int main(void)
 // ===============================================================
 // SETUP FUNCTION
 
-void setup_pi(IPlayer& player_1, IPlayer&	player_2)
+void setup_pi(IPlayer& player_1, IPlayer& player_2)
 {
 	wiringPiSetup();
 
@@ -211,15 +199,15 @@ void who_won_round(Winner winner, IPlayer& player_1, IPlayer& player_2)
 	std::cout << "\nWinner is Player " << winner << "!" << std::endl;
 	if (winner == 1)
 	{
-		player_1.set_led_state(TRUE);
+		player_1.set_led_state(true);
 		delay(led_winner_time);
-		player_1.set_led_state(FALSE);
+		player_1.set_led_state(false);
 	}
 	else
 	{
-		player_2.set_led_state(TRUE);
+		player_2.set_led_state(true);
 		delay(led_winner_time);
-		player_2.set_led_state(FALSE);
+		player_2.set_led_state(false);
 	}
 }
 
