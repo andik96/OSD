@@ -15,11 +15,6 @@
 
 
 // ===============================================================
-// TYPEDEFS
-
-using pin = unsigned short;
-
-// ===============================================================
 // CONSTANT EXPRESSIONS
 
 constexpr unsigned short max_game_rounds = 30;

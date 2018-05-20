@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/04/18         #
-#   Version: 2018/05/02 - V4.1  #
+#   Version: 2018/05/20 - V5.0  #
 ********************************/
 
 #pragma once
@@ -18,7 +18,7 @@
 // INCLUDES
 
 #include <iostream>
-#include "main.hpp"
+#include "IoManager.hpp"
 
 
 // #################################### SECTION BREAK ####################################

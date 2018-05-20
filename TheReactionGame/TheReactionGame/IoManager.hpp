@@ -18,7 +18,12 @@
 // INCLUDES
 
 #include "json.hpp"
-#include "main.hpp"
+
+
+// ===============================================================
+// TYPEDEFS
+
+using pin = unsigned short;
 
 
 // #################################### SECTION BREAK ####################################
