@@ -19,6 +19,12 @@
     <ClCompile Include="Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="IDigitalInput.cpp">
+      <Filter>Pins</Filter>
+    </ClCompile>
+    <ClCompile Include="IDigitalOutput.cpp">
+      <Filter>Pins</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -44,6 +50,15 @@
     </ClInclude>
     <ClInclude Include="Player.hpp">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="IDigitalInput.hpp">
+      <Filter>Pins</Filter>
+    </ClInclude>
+    <ClInclude Include="IDigitalOutput.hpp">
+      <Filter>Pins</Filter>
+    </ClInclude>
+    <ClInclude Include="IoEnums.hpp">
+      <Filter>Pins</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

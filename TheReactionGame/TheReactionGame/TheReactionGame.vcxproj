@@ -52,6 +52,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="IDigitalInput.cpp" />
+    <ClCompile Include="IDigitalOutput.cpp" />
     <ClCompile Include="IncludeJsonData.cpp" />
     <ClCompile Include="IoManager.cpp" />
     <ClCompile Include="IPlayer.cpp" />
@@ -60,7 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="IDigitalInput.hpp" />
+    <ClInclude Include="IDigitalOutput.hpp" />
     <ClInclude Include="IncludeJsonData.hpp" />
+    <ClInclude Include="IoEnums.hpp" />
     <ClInclude Include="IoManager.hpp" />
     <ClInclude Include="IPlayer.hpp" />
     <ClInclude Include="json.hpp" />
