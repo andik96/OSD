@@ -27,6 +27,7 @@
 
 Digital_input::Digital_input()
 {
+	pinMode(this->pin_number_, INPUT);
 }
 
 // ===============================================================
