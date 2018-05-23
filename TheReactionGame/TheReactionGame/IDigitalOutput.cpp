@@ -24,5 +24,5 @@
 // ===============================================================
 // DESTRUCTOR
 
-IDigitalOutput::~IDigitalOutput()
+IDigital_output::~IDigital_output()
 {}

@@ -51,6 +51,8 @@
     </RemotePostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DigitalOutput.cpp" />
+    <ClCompile Include="DigitalInput.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="IDigitalInput.cpp" />
     <ClCompile Include="IDigitalOutput.cpp" />
@@ -61,11 +63,12 @@
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DigitalOutput.hpp" />
+    <ClInclude Include="DigitalInput.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="IDigitalInput.hpp" />
     <ClInclude Include="IDigitalOutput.hpp" />
     <ClInclude Include="IncludeJsonData.hpp" />
-    <ClInclude Include="IoEnums.hpp" />
     <ClInclude Include="IoManager.hpp" />
     <ClInclude Include="IPlayer.hpp" />
     <ClInclude Include="json.hpp" />

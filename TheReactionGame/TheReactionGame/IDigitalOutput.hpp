@@ -20,11 +20,11 @@
 // ===============================================================
 // INTERFACE
 
-class IDigitalOutput
+class IDigital_output
 {
 public:
 	virtual void write(bool digital_value) = 0;
 	virtual bool read(void) const = 0;
 
-	virtual ~IDigitalOutput() = 0;
+	virtual ~IDigital_output() = 0;
 };

@@ -17,7 +17,7 @@
 // ===============================================================
 // INCLUDES
 
-#include "IoEnums.hpp"
+#include "IoManager.hpp"
 
 
 // #################################### SECTION BREAK ####################################
@@ -26,11 +26,11 @@
 // ===============================================================
 // INTERFACE
 
-class IDigitalInput
+class IDigital_input
 {
 public:
 	virtual bool read() const = 0;
 	virtual void set_resistor(Resistor resistor_type) = 0;
 
-	virtual ~IDigitalInput() = 0;
+	virtual ~IDigital_input() = 0;
 };

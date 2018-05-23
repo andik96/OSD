@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/02         #
-#   Version: 2018/05/20 - V2.0  #
+#   Version: 2018/05/23 - V2.2  #
 ********************************/
 
 #pragma once
@@ -18,12 +18,24 @@
 // INCLUDES
 
 #include "json.hpp"
+#include "piproxy.h"
 
 
 // ===============================================================
 // TYPEDEFS
 
 using pin = unsigned short;
+
+
+// ===============================================================
+// ENUMS
+
+enum class Resistor
+{
+	pulldown = PUD_DOWN,
+	no_resistor = PUD_OFF,
+	pullup = PUD_OFF
+};
 
 
 // #################################### SECTION BREAK ####################################
