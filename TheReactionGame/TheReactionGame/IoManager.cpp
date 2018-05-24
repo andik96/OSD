@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/02         #
-#   Version: 2018/05/20 - V2.0  #
+#   Version: 2018/05/24 - V2.1  #
 ********************************/
 
 
@@ -25,14 +25,14 @@ Io_manager::Io_manager()
 {
 }
 
-Io_manager::Io_manager(Io_manager && other) noexcept
-{
-}
-
-Io_manager & Io_manager::operator = (Io_manager && rhs) noexcept
-{
-	// TODO: hier Rückgabeanweisung eingeben
-}
+//Io_manager::Io_manager(Io_manager && other) noexcept;
+//{
+//}
+//
+//Io_manager & Io_manager::operator = (Io_manager && rhs) noexcept;
+//{
+//	// TODO: implementation of move operator
+//}
 
 Io_manager::~Io_manager()								// here all the reserved pins will be released again
 {
@@ -49,13 +49,23 @@ Io_manager::~Io_manager()								// here all the reserved pins will be released 
 
 // Wiringpi 0-16 && 21-31 = 28 Pins
 
-void Io_manager::reserve(pin pin)
+void Io_manager::reserve(pin act_pin)
 {
-	/*if(! element pin found)*/
-	this->reserved_pins_.push_back;
+	if(!is_reserved(act_pin))
+		this->reserved_pins_.push_back;
+	else
+		throw std::runtime_error("Pin already reserved!");
 }
 
-void Io_manager::release(pin pin)
+void Io_manager::release(pin act_pin)
 {
-	this->reserved_pins_.pop_back(/*element pin found at place ...*/);
+	if (is_reserved(act_pin))
+		this->reserved_pins_.erase(std::find(this->reserved_pins_.begin(), this->reserved_pins_.end(), act_pin));
+	else
+		throw std::runtime_error("Nothing to release!");
+}
+
+bool Io_manager::is_reserved(pin act_pin)
+{
+	return std::find(this->reserved_pins_.begin(), this->reserved_pins_.end(), act_pin) != this->reserved_pins_.end();
 }

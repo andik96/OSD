@@ -59,6 +59,8 @@ void prepare_round(void);
 
 int main(void)
 {
+	// INSTANCE IO MANAGER HERE
+
 	buzzer = get_pins()["buzzer"].get<pin>();
 	game_led = get_pins()["game_led"].get<pin>();
 	player_1_button = get_pins()["player_1_button"].get<pin>();
