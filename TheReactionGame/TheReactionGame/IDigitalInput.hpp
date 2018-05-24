@@ -8,7 +8,7 @@
 #       WINKLER  Andreas         #
 #                                #
 #   created: 2018/04/02          #
-#   Version: 2018/05/20 - V1.2   #
+#   Version: 2018/05/24 - V2.0   #
 *********************************/
 
 #pragma once
@@ -31,6 +31,7 @@ class IDigital_input
 public:
 	virtual bool read() const = 0;
 	virtual void set_resistor(Resistor resistor_type) = 0;
+	virtual pin get_pin(void) const = 0;
 
 	virtual ~IDigital_input() = 0;
 };

@@ -38,6 +38,8 @@ public:
 	// ---------
 	void set_resistor(Resistor resistor_type) override;
 	// --------- --------- --------- ---------
+	pin Digital_input::get_pin(void) const override;
+	// --------- --------- --------- ---------
 
 private:
 	pin pin_number_;

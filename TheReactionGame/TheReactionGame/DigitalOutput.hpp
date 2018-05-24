@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/23         #
-#   Version: 2018/05/23 - V1.0  #
+#   Version: 2018/05/24 - V1.1  #
 ********************************/
 
 #pragma once
@@ -37,6 +37,8 @@ public:
 	void write(bool digital_value) override;
 	// ---------
 	bool read(void) const override;
+	// --------- --------- --------- ---------
+	pin Digital_output::get_pin(void) const override;
 	// --------- --------- --------- ---------
 
 private:

@@ -8,7 +8,7 @@
 #       WINKLER  Andreas         #
 #                                #
 #   created: 2018/04/18          #
-#   Version: 2018/05/20 - V6.8   #
+#   Version: 2018/05/24 - V6.9   #
 \********************************/
 
 
@@ -24,6 +24,8 @@
 #include "IPlayer.hpp"
 #include "Player.hpp"
 #include "IoManager.hpp"
+#include "DigitalInput.hpp"
+#include "DigitalOutput.hpp"
 //#include "Game.hpp"
 
 
@@ -42,7 +44,6 @@ pin player_2_led;
 // ===============================================================
 // PROTOTYPES
 
-void setup_pi(IPlayer& player_1, IPlayer& player_2);
 short setup_game(IPlayer& player_1, IPlayer& player_2);
 Winner game(IPlayer& player_1, IPlayer& player_2, short game_round);
 void end_of_game(Winner winner, IPlayer& player_1, IPlayer& player_2);
@@ -59,22 +60,22 @@ void prepare_round(void);
 
 int main(void)
 {
-	// INSTANCE IO MANAGER HERE
+	Io_manager Pi_manager;
 
-	buzzer = get_pins()["buzzer"].get<pin>();
-	game_led = get_pins()["game_led"].get<pin>();
-	player_1_button = get_pins()["player_1_button"].get<pin>();
-	player_2_button = get_pins()["player_2_button"].get<pin>();
-	player_1_led = get_pins()["player_1_led"].get<pin>();
-	player_2_led = get_pins()["player_2_led"].get<pin>();
+	Digital_output buzzer{ get_pins()["buzzer"].get<pin>() };
+	Digital_output game_led{ get_pins()["game_led"].get<pin>() };
+	Digital_input player_1_button{ get_pins()["player_1_button"].get<pin>(), Resistor::pulldown };
+	Digital_input player_2_button{ get_pins()["player_2_button"].get<pin>(), Resistor::pulldown };
+	Digital_output player_1_led{ get_pins()["player_1_led"].get<pin>() };
+	Digital_output player_2_led{ get_pins()["player_2_led"].get<pin>() };
 
-	Player player_1{ player_1_button, player_1_led, "P1", 0 };
-	Player player_2{ player_2_button, player_2_led, "P2", 0 };
+
+	Player player_1{ player_1_button.get_pin, player_1_led.get_pin, "P1", 0 };
+	Player player_2{ player_2_button.get_pin, player_2_led.get_pin, "P2", 0 };
 	Winner winner = tie;
 	short game_rounds = 0;
 
 
-	setup_pi(player_1, player_2);
 	game_rounds = setup_game(player_1, player_2);
 	winner = game(player_1, player_2, game_rounds);
 	end_of_game(winner, player_1, player_2);
@@ -84,26 +85,6 @@ int main(void)
 
 
 // #################################### SECTION BREAK ####################################
-
-
-// ===============================================================
-// SETUP FUNCTION
-
-void setup_pi(IPlayer& player_1, IPlayer& player_2)
-{
-	wiringPiSetup();
-
-	// initialize all in- and outputs here
-	pinMode(buzzer, OUTPUT);
-	pinMode(game_led, OUTPUT);
-	pinMode(player_1.read_led_pin(), OUTPUT);
-	pinMode(player_2.read_led_pin(), OUTPUT);
-
-	pinMode(player_1.read_button_pin(), INPUT);
-	pinMode(player_2.read_button_pin(), INPUT);
-	pullUpDnControl(player_1.read_button_pin(), PUD_DOWN);
-	pullUpDnControl(player_2.read_button_pin(), PUD_DOWN);
-}
 
 
 // ===============================================================

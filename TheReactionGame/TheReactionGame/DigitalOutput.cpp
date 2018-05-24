@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/23         #
-#   Version: 2018/05/23 - V1.0  #
+#   Version: 2018/05/24 - V1.1  #
 ********************************/
 
 
@@ -52,6 +52,14 @@ void Digital_output::write(bool value)
 bool Digital_output::read(void) const
 {
 	return digitalRead(this->pin_number_);
+}
+
+// ===============================================================
+// ASK FOR PIN NUMBER
+
+pin Digital_output::get_pin(void) const
+{
+	return this->pin_number_;
 }
 
 
