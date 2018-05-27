@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/23         #
-#   Version: 2018/05/27 - V1.1  #
+#   Version: 2018/05/27 - V1.2  #
 ********************************/
 
 
@@ -32,13 +32,13 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 // ===============================================================
 // REACTION GAME TESTS
 
-namespace TestReactionGame
+namespace test_reaction_game
 {		
-	TEST_CLASS(Player_test)
+	TEST_CLASS(player_test)
 	{
 	public:
 		
-		TEST_METHOD(Test_construction)
+		TEST_METHOD(test_construction)
 		{
 			Player p{ 3,5,"AndiK",0 };
 

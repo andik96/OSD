@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/02         #
-#   Version: 2018/05/27 - V2.3  #
+#   Version: 2018/05/27 - V2.4  #
 ********************************/
 
 
@@ -56,8 +56,8 @@ Io_manager::~Io_manager()								// here all the reserved pins will be released 
 
 void Io_manager::reserve(const pin act_pin)
 {
-	if ((act_pin >= 0 && act_pin >= 16) ||
-		(act_pin >= 21 && act_pin <= 31))			// pin exists on raspberry pi
+	if ( (act_pin >= 0 && act_pin <= 16) ||
+		(act_pin >= 21 && act_pin <= 31) )			// pin exists on raspberry pi
 	{
 		if (!is_reserved(act_pin))
 			this->reserved_pins_.push_back(act_pin);

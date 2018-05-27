@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/23         #
-#   Version: 2018/05/24 - V1.1  #
+#   Version: 2018/05/27 - V1.2  #
 ********************************/
 
 
@@ -25,9 +25,10 @@
 // ===============================================================
 // DECLARE DIGITAL INPUT CLASS (INITIALISER)
 
-Digital_input::Digital_input(Io_manager& my_io_manager, pin pin_number, Resistor resistor_type) : 
+Digital_input::Digital_input(Io_manager& my_io_manager, const pin pin_number, const Resistor resistor_type) : 
 	my_io_manager_{ my_io_manager }, pin_number_{ pin_number }, resistor_type_{ resistor_type }
 {
+	my_io_manager_.reserve(this->pin_number_);
 }
 
 
