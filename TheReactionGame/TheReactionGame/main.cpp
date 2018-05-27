@@ -62,12 +62,12 @@ int main(void)
 {
 	Io_manager Pi_manager;
 
-	Digital_output buzzer{ get_pins()["buzzer"].get<pin>() };
-	Digital_output game_led{ get_pins()["game_led"].get<pin>() };
-	Digital_input player_1_button{ get_pins()["player_1_button"].get<pin>(), Resistor::pulldown };
-	Digital_input player_2_button{ get_pins()["player_2_button"].get<pin>(), Resistor::pulldown };
-	Digital_output player_1_led{ get_pins()["player_1_led"].get<pin>() };
-	Digital_output player_2_led{ get_pins()["player_2_led"].get<pin>() };
+	Digital_output buzzer{ Pi_manager, get_pins()["buzzer"].get<pin>() };
+	Digital_output game_led{ Pi_manager,get_pins()["game_led"].get<pin>() };
+	Digital_input player_1_button{ Pi_manager, get_pins()["player_1_button"].get<pin>(), Resistor::pulldown };
+	Digital_input player_2_button{ Pi_manager, get_pins()["player_2_button"].get<pin>(), Resistor::pulldown };
+	Digital_output player_1_led{ Pi_manager,get_pins()["player_1_led"].get<pin>() };
+	Digital_output player_2_led{ Pi_manager,get_pins()["player_2_led"].get<pin>() };
 
 
 	Player player_1{ player_1_button.get_pin, player_1_led.get_pin, "P1", 0 };

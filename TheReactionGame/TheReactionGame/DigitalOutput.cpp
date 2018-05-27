@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/23         #
-#   Version: 2018/05/24 - V1.1  #
+#   Version: 2018/05/27 - V1.3  #
 ********************************/
 
 
@@ -17,6 +17,7 @@
 
 #include "DigitalOutput.hpp"
 #include "piproxy.h"
+#include "IoManager.hpp"
 
 
 // #################################### SECTION BREAK ####################################
@@ -27,13 +28,15 @@
 
 Digital_output::Digital_output()
 {
+	my_io_manager_.reserve(this->pin_number_);
 	pinMode(this->pin_number_, OUTPUT);
 }
 
 // ===============================================================
 // DECLARE DIGITAL OUTPUT CLASS (INITIALISER)
 
-Digital_output::Digital_output(pin pin_number) : pin_number_{pin_number}
+Digital_output::Digital_output(Io_manager& my_io_manager, pin pin_number) : 
+	my_io_manager_{ my_io_manager }, pin_number_{ pin_number }
 {
 }
 
@@ -68,4 +71,5 @@ pin Digital_output::get_pin(void) const
 
 Digital_output::~Digital_output()
 {
+	my_io_manager_.release(this->pin_number_);
 }

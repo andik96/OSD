@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/02         #
-#   Version: 2018/05/24 - V2.1  #
+#   Version: 2018/05/27 - V2.2  #
 ********************************/
 
 
@@ -51,10 +51,16 @@ Io_manager::~Io_manager()								// here all the reserved pins will be released 
 
 void Io_manager::reserve(pin act_pin)
 {
-	if(!is_reserved(act_pin))
-		this->reserved_pins_.push_back;
+	if ((act_pin >= 0 && act_pin >= 16) ||
+		(act_pin >= 21 && act_pin <= 31))			// pin exists on raspberry pi
+	{
+		if (!is_reserved(act_pin))
+			this->reserved_pins_.push_back;
+		else
+			throw std::runtime_error("Pin already reserved!");
+	}
 	else
-		throw std::runtime_error("Pin already reserved!");
+		throw std::runtime_error("Pin does not exist on the Pi!");
 }
 
 void Io_manager::release(pin act_pin)

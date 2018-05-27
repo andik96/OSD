@@ -27,15 +27,18 @@
 
 Digital_input::Digital_input()
 {
+	my_io_manager_.reserve(this->pin_number_);
 	pinMode(this->pin_number_, INPUT);
 }
 
 // ===============================================================
 // DECLARE DIGITAL INPUT CLASS (INITIALISER)
 
-Digital_input::Digital_input(pin pin_number, Resistor resistor_type)
+Digital_input::Digital_input(Io_manager& my_io_manager, pin pin_number, Resistor resistor_type) : 
+	my_io_manager_{ my_io_manager }, pin_number_{ pin_number }, resistor_type_{ resistor_type }
 {
 }
+
 
 // ===============================================================
 // READ INPUT VALUE
@@ -67,4 +70,5 @@ pin Digital_input::get_pin(void) const
 
 Digital_input::~Digital_input()
 {
+	my_io_manager_.release(this->pin_number_);
 }

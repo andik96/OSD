@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/23         #
-#   Version: 2018/05/23 - V1.0  #
+#   Version: 2018/05/27 - V1.1  #
 ********************************/
 
 #pragma once
@@ -31,7 +31,7 @@ class Digital_input : public IDigital_input
 {
 public:
 	Digital_input();
-	Digital_input(pin pin_number, Resistor resistor_type);
+	Digital_input(Io_manager& my_io_manager, pin pin_number, Resistor resistor_type);
 
 	// --------- --------- --------- ---------
 	bool read() const override;
@@ -44,6 +44,6 @@ public:
 private:
 	pin pin_number_;
 	Resistor resistor_type_;
-	// Io_manager(pin_number_);
+	Io_manager& my_io_manager_;
 };
 
