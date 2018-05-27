@@ -1,2 +1,4 @@
-﻿  Cleaning remote project directory
-C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Application Type\Linux\1.0\Linux.targets(142,6): error : Could not connect to the remote system. Please verify your connection settings, and that your machine is on the network and reachable.
+﻿  Validating architecture
+  Validating sources
+  Copying sources remotely to 'andikpi.local'
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Application Type\Linux\1.0\Linux.targets(133,5): error : Could not connect to the remote system. Please verify your connection settings, and that your machine is on the network and reachable.
