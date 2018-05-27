@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/02         #
-#   Version: 2018/05/27 - V2.2  #
+#   Version: 2018/05/27 - V2.3  #
 ********************************/
 
 
@@ -55,7 +55,7 @@ void Io_manager::reserve(pin act_pin)
 		(act_pin >= 21 && act_pin <= 31))			// pin exists on raspberry pi
 	{
 		if (!is_reserved(act_pin))
-			this->reserved_pins_.push_back;
+			this->reserved_pins_.push_back(act_pin);
 		else
 			throw std::runtime_error("Pin already reserved!");
 	}
