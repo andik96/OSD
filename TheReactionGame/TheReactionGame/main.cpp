@@ -70,8 +70,8 @@ int main(void)
 	Digital_output player_2_led{ Pi_manager,get_pins()["player_2_led"].get<pin>() };
 
 
-	Player player_1{ player_1_button.get_pin, player_1_led.get_pin, "P1", 0 };
-	Player player_2{ player_2_button.get_pin, player_2_led.get_pin, "P2", 0 };
+	Player player_1{ player_1_button.get_pin(), player_1_led.get_pin(), "P1", 0 };
+	Player player_2{ player_2_button.get_pin(), player_2_led.get_pin(), "P2", 0 };
 	Winner winner = tie;
 	short game_rounds = 0;
 

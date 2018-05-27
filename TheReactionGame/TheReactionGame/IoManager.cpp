@@ -20,6 +20,7 @@
 
 // #################################### SECTION BREAK ####################################
 
+std::vector<pin> Io_manager::reserved_pins_{};
 
 Io_manager::Io_manager()
 {
@@ -55,7 +56,7 @@ void Io_manager::reserve(pin act_pin)
 		(act_pin >= 21 && act_pin <= 31))			// pin exists on raspberry pi
 	{
 		if (!is_reserved(act_pin))
-			this->reserved_pins_.push_back;
+			this->reserved_pins_.push_back(act_pin);
 		else
 			throw std::runtime_error("Pin already reserved!");
 	}

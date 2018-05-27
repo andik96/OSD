@@ -24,15 +24,6 @@
 
 
 // ===============================================================
-// (DEFAULT) CONSTRUCTOR
-
-Digital_output::Digital_output()
-{
-	my_io_manager_.reserve(this->pin_number_);
-	pinMode(this->pin_number_, OUTPUT);
-}
-
-// ===============================================================
 // DECLARE DIGITAL OUTPUT CLASS (INITIALISER)
 
 Digital_output::Digital_output(Io_manager& my_io_manager, pin pin_number) : 

@@ -30,15 +30,15 @@
 class Digital_input : public IDigital_input
 {
 public:
-	Digital_input();
 	Digital_input(Io_manager& my_io_manager, pin pin_number, Resistor resistor_type);
+	~Digital_input();
 
 	// --------- --------- --------- ---------
 	bool read() const override;
 	// ---------
 	void set_resistor(Resistor resistor_type) override;
 	// --------- --------- --------- ---------
-	pin Digital_input::get_pin(void) const override;
+	pin get_pin(void) const override;
 	// --------- --------- --------- ---------
 
 private:

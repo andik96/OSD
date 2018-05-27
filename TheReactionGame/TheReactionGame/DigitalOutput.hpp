@@ -30,8 +30,8 @@
 class Digital_output : public IDigital_output
 {
 public:
-	Digital_output();
 	Digital_output(Io_manager& my_io_manager, pin pin_number);
+	~Digital_output();
 
 	// --------- --------- --------- ---------
 	void write(bool digital_value) override;

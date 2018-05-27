@@ -23,15 +23,6 @@
 
 
 // ===============================================================
-// (DEFAULT) CONSTRUCTOR
-
-Digital_input::Digital_input()
-{
-	my_io_manager_.reserve(this->pin_number_);
-	pinMode(this->pin_number_, INPUT);
-}
-
-// ===============================================================
 // DECLARE DIGITAL INPUT CLASS (INITIALISER)
 
 Digital_input::Digital_input(Io_manager& my_io_manager, pin pin_number, Resistor resistor_type) : 

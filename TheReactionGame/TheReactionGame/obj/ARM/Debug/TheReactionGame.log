@@ -1,4 +1,9 @@
 ﻿  Validating architecture
   Validating sources
-  Copying sources remotely to 'andikpi.local'
-C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Application Type\Linux\1.0\Linux.targets(133,5): error : Could not connect to the remote system. Please verify your connection settings, and that your machine is on the network and reachable.
+  Copying sources remotely to 'fe80::4cbd:bb97:464c:80bf'
+  Starting remote build
+  Compiling sources:
+  IoManager.cpp
+  Linking objects
+  TheReactionGame.vcxproj -> D:\fh_abgaben\repos\KemperleWinkler\TheReactionGame\TheReactionGame\bin\ARM\Debug\TheReactionGame.out
+  Invoking 'gpio export 17 out', working directory: '/home/pi/projects/TheReactionGame'
