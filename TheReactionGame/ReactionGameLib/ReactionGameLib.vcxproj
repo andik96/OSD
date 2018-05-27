@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\TheReactionGame\DigitalInput.cpp" />
+    <ClCompile Include="..\TheReactionGame\DigitalOutput.cpp" />
     <ClCompile Include="..\TheReactionGame\Game.cpp" />
+    <ClCompile Include="..\TheReactionGame\IDigitalInput.cpp" />
+    <ClCompile Include="..\TheReactionGame\IDigitalOutput.cpp" />
     <ClCompile Include="..\TheReactionGame\IncludeJsonData.cpp" />
     <ClCompile Include="..\TheReactionGame\IoManager.cpp" />
     <ClCompile Include="..\TheReactionGame\IPlayer.cpp" />
@@ -28,7 +32,11 @@
     <ClCompile Include="WinpiEmulator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\TheReactionGame\DigitalInput.hpp" />
+    <ClInclude Include="..\TheReactionGame\DigitalOutput.hpp" />
     <ClInclude Include="..\TheReactionGame\Game.hpp" />
+    <ClInclude Include="..\TheReactionGame\IDigitalInput.hpp" />
+    <ClInclude Include="..\TheReactionGame\IDigitalOutput.hpp" />
     <ClInclude Include="..\TheReactionGame\IncludeJsonData.hpp" />
     <ClInclude Include="..\TheReactionGame\IoManager.hpp" />
     <ClInclude Include="..\TheReactionGame\IPlayer.hpp" />

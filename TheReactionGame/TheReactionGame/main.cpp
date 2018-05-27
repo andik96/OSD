@@ -45,9 +45,9 @@ pin player_2_led;
 // PROTOTYPES
 
 short setup_game(IPlayer& player_1, IPlayer& player_2);
-Winner game(IPlayer& player_1, IPlayer& player_2, short game_round);
+Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds);
 void end_of_game(Winner winner, IPlayer& player_1, IPlayer& player_2);
-void who_won_round(Winner round_winner, IPlayer& player_1, IPlayer& player_2);
+void who_won_round(const Winner round_winner, IPlayer& player_1, IPlayer& player_2);
 void prepare_round(void);
 
 
@@ -60,20 +60,20 @@ void prepare_round(void);
 
 int main(void)
 {
-	Io_manager Pi_manager;
+	Io_manager pi_manager;
 
 	try
 	{
-		Digital_output buzzer{ Pi_manager, get_pins()["buzzer"].get<pin>() };
-		Digital_output game_led{ Pi_manager,get_pins()["game_led"].get<pin>() };
-		Digital_input player_1_button{ Pi_manager, get_pins()["player_1_button"].get<pin>(), Resistor::pulldown };
-		Digital_input player_2_button{ Pi_manager, get_pins()["player_2_button"].get<pin>(), Resistor::pulldown };
-		Digital_output player_1_led{ Pi_manager,get_pins()["player_1_led"].get<pin>() };
-		Digital_output player_2_led{ Pi_manager,get_pins()["player_2_led"].get<pin>() };
+		Digital_output buzzer{ pi_manager, get_pins()["buzzer"].get<pin>() };
+		Digital_output game_led{ pi_manager,get_pins()["game_led"].get<pin>() };
+		Digital_input player_1_button{ pi_manager, get_pins()["player_1_button"].get<pin>(), Resistor::pulldown };
+		Digital_input player_2_button{ pi_manager, get_pins()["player_2_button"].get<pin>(), Resistor::pulldown };
+		Digital_output player_1_led{ pi_manager,get_pins()["player_1_led"].get<pin>() };
+		Digital_output player_2_led{ pi_manager,get_pins()["player_2_led"].get<pin>() };
 
 		Player player_1{ player_1_button.get_pin(), player_1_led.get_pin(), "P1", 0 };
 		Player player_2{ player_2_button.get_pin(), player_2_led.get_pin(), "P2", 0 };
-		Winner winner = tie;
+		auto winner = Winner::tie;
 		short game_rounds = 0;
 
 
@@ -109,8 +109,7 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds)
 		int64_t start_time_us = 0;
 		unsigned short timeout = 0;
 		unsigned short random_t = 0;
-		bool game_led_on = false;
-		Winner round_winner = tie;
+		auto round_winner = Winner::tie;
 		
 		digitalWrite(game_led, LOW);
 		random_t = rand() % 5000 + 5000; // to activate between 5-10 seconds
@@ -126,7 +125,7 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds)
 		while (true)
 		{
 			now = std::chrono::system_clock::now().time_since_epoch();
-			auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(now).count() - start_time_us;
+			const auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(now).count() - start_time_us;
 
 			if (delta >= timeout)
 			{
@@ -187,10 +186,10 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds)
 // ===============================================================
 // FUNCTION FOR SHOWING, WHO WON THE ACTUAL ROUND
 
-void who_won_round(Winner winner, IPlayer& player_1, IPlayer& player_2)
+void who_won_round(const Winner round_winner, IPlayer& player_1, IPlayer& player_2)
 {
-	std::cout << "\nWinner is Player " << winner << "!" << std::endl;
-	if (winner == 1)
+	std::cout << "\nWinner is Player " << round_winner << "!" << std::endl;
+	if (round_winner == 1)
 	{
 		player_1.set_led_state(true);
 		delay(led_winner_time);
