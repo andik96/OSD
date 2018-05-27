@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/02         #
-#   Version: 2018/05/27 - V2.2  #
+#   Version: 2018/05/27 - V2.3  #
 ********************************/
 
 
@@ -20,20 +20,23 @@
 
 // #################################### SECTION BREAK ####################################
 
+
+// ===============================================================
+// CREATE VECTOR WITH RESERVED PINS
+
 std::vector<pin> Io_manager::reserved_pins_{};
+
+
+// ===============================================================
+// CONSTRUCTOR
 
 Io_manager::Io_manager()
 {
 }
 
-//Io_manager::Io_manager(Io_manager && other) noexcept;
-//{
-//}
-//
-//Io_manager & Io_manager::operator = (Io_manager && rhs) noexcept;
-//{
-//	// TODO: implementation of move operator
-//}
+
+// ===============================================================
+// DESTRUCTOR
 
 Io_manager::~Io_manager()								// here all the reserved pins will be released again
 {
@@ -44,9 +47,11 @@ Io_manager::~Io_manager()								// here all the reserved pins will be released 
 }
 
 
-
 // #################################### SECTION BREAK ####################################
 
+
+// ===============================================================
+// RESERVE PINS
 
 // Wiringpi 0-16 && 21-31 = 28 Pins
 
@@ -64,6 +69,9 @@ void Io_manager::reserve(pin act_pin)
 		throw std::runtime_error("Pin does not exist on the Pi!");
 }
 
+// ===============================================================
+// RELEASE PINS
+
 void Io_manager::release(pin act_pin)
 {
 	if (is_reserved(act_pin))
@@ -71,6 +79,9 @@ void Io_manager::release(pin act_pin)
 	else
 		throw std::runtime_error("Nothing to release!");
 }
+
+// ===============================================================
+// ASK IF PIN IS RESERVED
 
 bool Io_manager::is_reserved(pin act_pin)
 {

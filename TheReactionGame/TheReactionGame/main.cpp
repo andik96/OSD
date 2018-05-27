@@ -8,7 +8,7 @@
 #       WINKLER  Andreas         #
 #                                #
 #   created: 2018/04/18          #
-#   Version: 2018/05/24 - V6.9   #
+#   Version: 2018/05/24 - V6.10  #
 \********************************/
 
 
@@ -62,23 +62,33 @@ int main(void)
 {
 	Io_manager Pi_manager;
 
-	Digital_output buzzer{ Pi_manager, get_pins()["buzzer"].get<pin>() };
-	Digital_output game_led{ Pi_manager,get_pins()["game_led"].get<pin>() };
-	Digital_input player_1_button{ Pi_manager, get_pins()["player_1_button"].get<pin>(), Resistor::pulldown };
-	Digital_input player_2_button{ Pi_manager, get_pins()["player_2_button"].get<pin>(), Resistor::pulldown };
-	Digital_output player_1_led{ Pi_manager,get_pins()["player_1_led"].get<pin>() };
-	Digital_output player_2_led{ Pi_manager,get_pins()["player_2_led"].get<pin>() };
+	try
+	{
+		Digital_output buzzer{ Pi_manager, get_pins()["buzzer"].get<pin>() };
+		Digital_output game_led{ Pi_manager,get_pins()["game_led"].get<pin>() };
+		Digital_input player_1_button{ Pi_manager, get_pins()["player_1_button"].get<pin>(), Resistor::pulldown };
+		Digital_input player_2_button{ Pi_manager, get_pins()["player_2_button"].get<pin>(), Resistor::pulldown };
+		Digital_output player_1_led{ Pi_manager,get_pins()["player_1_led"].get<pin>() };
+		Digital_output player_2_led{ Pi_manager,get_pins()["player_2_led"].get<pin>() };
+
+		Player player_1{ player_1_button.get_pin(), player_1_led.get_pin(), "P1", 0 };
+		Player player_2{ player_2_button.get_pin(), player_2_led.get_pin(), "P2", 0 };
+		Winner winner = tie;
+		short game_rounds = 0;
 
 
-	Player player_1{ player_1_button.get_pin(), player_1_led.get_pin(), "P1", 0 };
-	Player player_2{ player_2_button.get_pin(), player_2_led.get_pin(), "P2", 0 };
-	Winner winner = tie;
-	short game_rounds = 0;
-
-
-	game_rounds = setup_game(player_1, player_2);
-	winner = game(player_1, player_2, game_rounds);
-	end_of_game(winner, player_1, player_2);
+		game_rounds = setup_game(player_1, player_2);
+		winner = game(player_1, player_2, game_rounds);
+		end_of_game(winner, player_1, player_2);
+	}
+	catch (std::runtime_error& exception)
+	{
+		std::cerr << "Exception was thrown: " << exception.what() << std::endl;
+	}
+	catch (...)
+	{
+		std::cerr << "An unknown error occured!" << std::endl;
+	}
 
 	return 0;
 }
