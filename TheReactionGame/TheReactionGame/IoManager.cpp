@@ -30,9 +30,8 @@ std::vector<pin> Io_manager::reserved_pins_{};
 // ===============================================================
 // CONSTRUCTOR
 
-Io_manager::Io_manager()
-{
-}
+Io_manager::Io_manager() = default;
+
 
 
 // ===============================================================
@@ -55,7 +54,7 @@ Io_manager::~Io_manager()								// here all the reserved pins will be released 
 
 // Wiringpi 0-16 && 21-31 = 28 Pins
 
-void Io_manager::reserve(pin act_pin)
+void Io_manager::reserve(const pin act_pin)
 {
 	if ((act_pin >= 0 && act_pin >= 16) ||
 		(act_pin >= 21 && act_pin <= 31))			// pin exists on raspberry pi
@@ -72,7 +71,7 @@ void Io_manager::reserve(pin act_pin)
 // ===============================================================
 // RELEASE PINS
 
-void Io_manager::release(pin act_pin)
+void Io_manager::release(const pin act_pin)
 {
 	if (is_reserved(act_pin))
 		this->reserved_pins_.erase(std::find(this->reserved_pins_.begin(), this->reserved_pins_.end(), act_pin));
@@ -83,7 +82,7 @@ void Io_manager::release(pin act_pin)
 // ===============================================================
 // ASK IF PIN IS RESERVED
 
-bool Io_manager::is_reserved(pin act_pin)
+bool Io_manager::is_reserved(const pin act_pin) const
 {
 	return std::find(this->reserved_pins_.begin(), this->reserved_pins_.end(), act_pin) != this->reserved_pins_.end();
 }

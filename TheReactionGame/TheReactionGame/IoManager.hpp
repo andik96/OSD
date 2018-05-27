@@ -54,9 +54,9 @@ public:
 	Io_manager& operator = (Io_manager&& rhs) = delete;				// no move action allowed!
 	~Io_manager();													// here the pin will be released again
 
-	void reserve(pin act_pin);
-	void release(pin act_pin);
-	bool is_reserved(pin act_pin);
+	void reserve(const pin act_pin);
+	void release(const pin act_pin);
+	bool is_reserved(const pin act_pin) const;
 
 protected:
 	static std::vector<pin> reserved_pins_;							// all the pins are reserved here by their number
