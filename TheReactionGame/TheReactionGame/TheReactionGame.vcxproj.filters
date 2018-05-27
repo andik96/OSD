@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="IPlayer.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="IDigitalInput.cpp">
+      <Filter>Pins\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="IDigitalOutput.cpp">
+      <Filter>Pins\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="DigitalOutput.cpp">
+      <Filter>Pins\IoClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="IncludeJsonData.cpp">
+      <Filter>Pins\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="IoManager.cpp">
+      <Filter>Pins\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="DigitalInput.cpp">
+      <Filter>Pins\IoClasses</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.hpp">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="main.hpp">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="IPlayer.hpp">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="IDigitalInput.hpp">
+      <Filter>Pins\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IDigitalOutput.hpp">
+      <Filter>Pins\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="DigitalOutput.hpp">
+      <Filter>Pins\IoClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="IncludeJsonData.hpp">
+      <Filter>Pins\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="IoManager.hpp">
+      <Filter>Pins\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>Pins\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="piproxy.h">
+      <Filter>Pins\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="DigitalInput.hpp">
+      <Filter>Pins\IoClasses</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Game">
+      <UniqueIdentifier>{87c6259a-cd36-4ed2-bd28-8359c3ac6286}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pins">
+      <UniqueIdentifier>{dd8f3912-9ca6-4515-85bd-1f647b2e2bac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{c7b7d9df-b7d6-4f6c-bb65-8c823874526e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pins\Interfaces">
+      <UniqueIdentifier>{63d58e7f-9741-4433-967b-8dfef99dbe71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pins\IoClasses">
+      <UniqueIdentifier>{be7dad32-4316-4613-8050-fb6efc3ecbfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pins\Management">
+      <UniqueIdentifier>{0f4d65b1-c640-4ac3-96f7-e69169ffc836}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pins.json">
+      <Filter>Pins\Management</Filter>
+    </None>
+  </ItemGroup>
+</Project>

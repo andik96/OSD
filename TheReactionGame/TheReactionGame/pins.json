@@ -1,0 +1,8 @@
+{
+"player_1_button" : 5,
+"player_2_button" : 6,
+"buzzer" : 13,
+"game_led" : 7,
+"player_1_led" : 3,
+"player_2_led" : 4
+}
