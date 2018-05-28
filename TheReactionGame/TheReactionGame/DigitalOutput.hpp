@@ -42,7 +42,7 @@ public:
 	// --------- --------- --------- ---------
 
 private:
+	Io_manager & my_io_manager_;
 	pin pin_number_;
-	Io_manager& my_io_manager_;
 };
 

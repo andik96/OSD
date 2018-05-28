@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/23         #
-#   Version: 2018/05/27 - V1.2  #
+#   Version: 2018/05/28 - V1.3  #
 ********************************/
 
 
@@ -43,9 +43,10 @@ bool Digital_input::read() const
 // ===============================================================
 // SELECT PULLUPDOWN RESISTOR
 
-void Digital_input::set_resistor(Resistor resistor_type)
+void Digital_input::set_resistor(const Resistor resistor_type)
 {
 	pullUpDnControl(this->pin_number_, static_cast<int>(resistor_type));
+	resistor_type_ = resistor_type;
 }
 
 // ===============================================================
@@ -56,11 +57,21 @@ pin Digital_input::get_pin(void) const
 	return this->pin_number_;
 }
 
+// ===============================================================
+// ASK FOR INPUT RESISTOR
+
+Resistor Digital_input::get_resistor_type(void) const
+{
+	return this->resistor_type_;
+}
+
 
 // ===============================================================
 // DESTRUCTOR
 
 Digital_input::~Digital_input()
 {
+	pullUpDnControl(this->pin_number_, static_cast<int>(Resistor::no_resistor));		// reset pullup/down resistor
+
 	my_io_manager_.release(this->pin_number_);
 }

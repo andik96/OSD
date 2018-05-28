@@ -40,10 +40,11 @@ public:
 	// --------- --------- --------- ---------
 	pin get_pin(void) const override;
 	// --------- --------- --------- ---------
+	Resistor get_resistor_type(void) const override;
 
 private:
+	Io_manager & my_io_manager_;
 	pin pin_number_;
 	Resistor resistor_type_;
-	Io_manager& my_io_manager_;
 };
 
