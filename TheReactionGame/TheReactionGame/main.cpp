@@ -8,7 +8,7 @@
 #       WINKLER  Andreas         #
 #                                #
 #   created: 2018/04/18          #
-#   Version: 2018/05/24 - V6.10  #
+#   Version: 2018/05/28 - V6.11  #
 \********************************/
 
 
@@ -24,7 +24,6 @@
 #include "IPlayer.hpp"
 #include "Player.hpp"
 #include "IoManager.hpp"
-#include "IDigitalInput.hpp"
 #include "IDigitalOutput.hpp"
 #include "DigitalInput.hpp"
 #include "DigitalOutput.hpp"
@@ -141,13 +140,13 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds, const IDigi
 				if (player_1.read_button_state() == LOW)
 				{
 					round_winner = p1;
-					player_1.add_victory();	//player_1.setWins(player_1.readWins() + 1);
+					player_1.add_victory();
 					break;
 				}
 				else if (player_2.read_button_state() == LOW)
 				{
 					round_winner = p2;
-					player_2.add_victory();	//player_2.setWins(player_2.readWins() + 1);
+					player_2.add_victory();
 					break;
 				}
 			}
@@ -156,13 +155,13 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds, const IDigi
 				if (player_1.read_button_state() == LOW)
 				{
 					round_winner = p2;
-					player_2.add_victory();	//player_2.setWins(player_2.readWins() + 1);
+					player_2.add_victory();
 					break;
 				}
 				else if (player_2.read_button_state() == LOW)
 				{
 					round_winner = p1;
-					player_1.add_victory();	//player_1.setWins(player_1.readWins() + 1);
+					player_1.add_victory();
 					break;
 				}
 			}
@@ -238,7 +237,7 @@ void end_of_game(Winner winner, IPlayer& player_1, IPlayer& player_2)
 // ===============================================================
 // FUNCTION FOR PREPARING EVERY ROUND
 
-void prepare_round(const IDigital_input& buzzer)
+void prepare_round(const IDigital_output& buzzer)
 {
 	digitalWrite(buzzer.get_pin(), HIGH);
 	delay(150);
