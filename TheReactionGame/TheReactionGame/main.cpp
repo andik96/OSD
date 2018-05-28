@@ -85,11 +85,17 @@ int main(void)
 	{
 		std::cerr << "Exception was thrown: " << exception.what() << std::endl;
 	}
+	catch(std::logic_error& exception)
+	{
+		std::cerr << "Exception was thrown: " << exception.what() << std::endl;
+	}
 	catch (...)
 	{
 		std::cerr << "An unknown error occured!" << std::endl;
 	}
 
+	getchar();
+	getchar();
 	return 0;
 }
 

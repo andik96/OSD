@@ -1,7 +1,7 @@
 
 /********************************
 #   THE REACTION GAME           #
-#   PlayerTest.cpp              #
+#   IoManagerTest.cpp           #
 #                               #
 #   Authors:                    #
 #       KEMPERLE Andreas        #
@@ -17,7 +17,7 @@
 
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../TheReactionGame/Player.hpp"
+#include "../TheReactionGame/IoManager.hpp"
 
 
 // ===============================================================
@@ -34,18 +34,37 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace test_reaction_game
 {		
-	TEST_CLASS(Player_test)
+	TEST_CLASS(Io_manager_test)
 	{
 	public:
-		
-		TEST_METHOD(test_construction)
+		TEST_METHOD(test_construction1)
 		{
-			Player p{ 3,5,"AndiK",0 };
+			Io_manager my_manager{};
 
-			Assert::AreEqual(3, static_cast<int>(p.read_button_pin()));
-			Assert::AreEqual(5, static_cast<int>(p.read_led_pin()));
-			Assert::AreEqual("AndiK", p.read_name().c_str(), "Names are different.");
-			Assert::AreEqual(0, static_cast<int>(p.read_wins()) );
+			Assert::IsFalse(my_manager.is_reserved(0));
+			
+			my_manager.reserve(0);
+			Assert::IsTrue(my_manager.is_reserved(0));
+
+			my_manager.release(0);
+			Assert::IsFalse(my_manager.is_reserved(0));
+
+			my_manager.reserve(0);
+			Assert::IsTrue(my_manager.is_reserved(0));
+		}
+
+		TEST_METHOD(test_construction2)
+		{
+			Io_manager my_manager{};
+
+			//my_manager.reserve(1);
+			//Assert::AreEqual(1,static_cast<int>(my_manager.is_reserved(static_cast<pin>(1) ) ) );
+
+			/*my_manager.release(5);
+			Assert::IsFalse(my_manager.is_reserved(5));
+
+			my_manager.reserve(5);
+			Assert::IsTrue(my_manager.is_reserved(5));*/
 		}
 
 	};

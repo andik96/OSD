@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/23         #
-#   Version: 2018/05/27 - V1.3  #
+#   Version: 2018/05/28 - V1.4  #
 ********************************/
 
 
@@ -30,6 +30,7 @@ Digital_output::Digital_output(Io_manager& my_io_manager, const pin pin_number) 
 	my_io_manager_{ my_io_manager }, pin_number_{ pin_number }
 {
 	my_io_manager_.reserve(this->pin_number_);
+	pinMode(pin_number_, OUTPUT);
 }
 
 
