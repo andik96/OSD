@@ -56,9 +56,10 @@ namespace test_reaction_game
 		TEST_METHOD(test_construction2)
 		{
 			Io_manager my_manager{};
+			const pin test_pin = 5;
 
-			//my_manager.reserve(1);
-			//Assert::AreEqual(1,static_cast<int>(my_manager.is_reserved(static_cast<pin>(1) ) ) );
+			my_manager.reserve(test_pin);
+			Assert::IsTrue(static_cast<int>(my_manager.is_reserved(test_pin)) );
 
 			/*my_manager.release(5);
 			Assert::IsFalse(my_manager.is_reserved(5));

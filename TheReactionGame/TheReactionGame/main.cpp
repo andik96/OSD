@@ -48,7 +48,6 @@ void prepare_round(const IDigital_output& buzzer);
 // #################################### SECTION BREAK ####################################
 
 
-
 // ===============================================================
 // MAIN FUNCTION
 
@@ -139,13 +138,13 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds, const IDigi
 
 				if (player_1.read_button_state() == LOW)
 				{
-					round_winner = p1;
+					round_winner = Winner::p1;
 					player_1.add_victory();
 					break;
 				}
 				else if (player_2.read_button_state() == LOW)
 				{
-					round_winner = p2;
+					round_winner = Winner::p2;
 					player_2.add_victory();
 					break;
 				}
@@ -154,13 +153,13 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds, const IDigi
 			{
 				if (player_1.read_button_state() == LOW)
 				{
-					round_winner = p2;
+					round_winner = Winner::p2;
 					player_2.add_victory();
 					break;
 				}
 				else if (player_2.read_button_state() == LOW)
 				{
-					round_winner = p1;
+					round_winner = Winner::p1;
 					player_1.add_victory();
 					break;
 				}
@@ -189,17 +188,29 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds, const IDigi
 
 void who_won_round(const Winner round_winner, IPlayer& player_1, IPlayer& player_2)
 {
-	std::cout << "\nWinner is Player " << round_winner << "!" << std::endl;
-	if (round_winner == 1)
+	if ((round_winner == Winner::p1) || (round_winner == Winner::p2))
+		std::cout << "\nWinner is Player " << round_winner << "!" << std::endl;
+	else
+		std::cout << "\nBoth players won in this round!" << std::endl;
+
+	if (round_winner == Winner::p1)
 	{
 		player_1.set_led_state(true);
 		delay(led_winner_time);
 		player_1.set_led_state(false);
 	}
-	else
+	else if(round_winner == Winner::p2)
 	{
 		player_2.set_led_state(true);
 		delay(led_winner_time);
+		player_2.set_led_state(false);
+	}
+	else
+	{
+		player_1.set_led_state(true);
+		player_2.set_led_state(true);
+		delay(led_winner_time);
+		player_1.set_led_state(false);
 		player_2.set_led_state(false);
 	}
 }
@@ -228,8 +239,8 @@ void end_of_game(Winner winner, IPlayer& player_1, IPlayer& player_2)
 		std::cout << "Timeout - game aborted" << std::endl;
 		break;
 
-	default: break;
-
+	default: 
+		break;
 	}
 }
 
@@ -276,7 +287,6 @@ short setup_game(IPlayer& player_1, IPlayer& player_2)
 	{
 		std::cout << "\n\t How many rounds do you want to play?\n\t " << std::endl;
 		std::cin >> game_rounds;
-		// cin.fail() or if(game_rounds) to catch non-int input
 	}
 
 	return game_rounds;
