@@ -29,7 +29,7 @@ Digital_input::Digital_input(Io_manager& my_io_manager, const pin pin_number, co
 	my_io_manager_{ my_io_manager }, pin_number_{ pin_number }, resistor_type_{ resistor_type }
 {
 	my_io_manager_.reserve(this->pin_number_);
-	pinMode(pin_number_, INPUT);
+	pinMode(this->pin_number_, INPUT);
 }
 
 

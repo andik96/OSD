@@ -30,7 +30,7 @@ Digital_output::Digital_output(Io_manager& my_io_manager, const pin pin_number) 
 	my_io_manager_{ my_io_manager }, pin_number_{ pin_number }
 {
 	my_io_manager_.reserve(this->pin_number_);
-	pinMode(pin_number_, OUTPUT);
+	pinMode(this->pin_number_, OUTPUT);
 }
 
 

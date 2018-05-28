@@ -24,6 +24,8 @@
 #include "IPlayer.hpp"
 #include "Player.hpp"
 #include "IoManager.hpp"
+#include "IDigitalInput.hpp"
+#include "IDigitalOutput.hpp"
 #include "DigitalInput.hpp"
 #include "DigitalOutput.hpp"
 
@@ -32,22 +34,16 @@
 // GLOBAL VARIABLES
 
 nlohmann::json pins_config;
-pin buzzer;
-pin game_led;
-pin player_1_button;
-pin player_2_button;
-pin player_1_led;
-pin player_2_led;
 
 
 // ===============================================================
 // PROTOTYPES
 
 short setup_game(IPlayer& player_1, IPlayer& player_2);
-Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds);
+Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds, const IDigital_output& game_led, const IDigital_output& buzzer);
 void end_of_game(Winner winner, IPlayer& player_1, IPlayer& player_2);
 void who_won_round(const Winner round_winner, IPlayer& player_1, IPlayer& player_2);
-void prepare_round(void);
+void prepare_round(const IDigital_output& buzzer);
 
 
 // #################################### SECTION BREAK ####################################
@@ -78,7 +74,7 @@ int main(void)
 
 
 		game_rounds = setup_game(player_1, player_2);
-		winner = game(player_1, player_2, game_rounds);
+		winner = game(player_1, player_2, game_rounds, game_led, buzzer);
 		end_of_game(winner, player_1, player_2);
 	}
 	catch (std::runtime_error& exception)
@@ -106,7 +102,7 @@ int main(void)
 // ===============================================================
 // LOOP FUNCTION
 
-Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds)
+Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds, const IDigital_output& game_led, const IDigital_output& buzzer)
 {
 	static unsigned short act_round = 0;
 
@@ -117,11 +113,11 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds)
 		unsigned short random_t = 0;
 		auto round_winner = Winner::tie;
 		
-		digitalWrite(game_led, LOW);
+		digitalWrite(game_led.get_pin(), LOW);
 		random_t = rand() % 5000 + 5000; // to activate between 5-10 seconds
 		timeout = random_t + max_time_inactive;
 
-		prepare_round();
+		prepare_round(buzzer);
 		std::cout << "\n\t Start of Round " << act_round + 1 << "!\n" << std::endl;
 		
 		auto now = std::chrono::system_clock::now().time_since_epoch();
@@ -139,8 +135,8 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds)
 			}
 			else if (delta >= random_t)
 			{
-				if (!digitalRead(game_led))
-					digitalWrite(game_led, HIGH);
+				if (!digitalRead(game_led.get_pin()))
+					digitalWrite(game_led.get_pin(), HIGH);
 
 				if (player_1.read_button_state() == LOW)
 				{
@@ -172,7 +168,7 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds)
 			}
 			delay(1);
 		}
-		digitalWrite(game_led, LOW);
+		digitalWrite(game_led.get_pin(), LOW);
 		who_won_round(round_winner, player_1, player_2);
 
 		if (player_1.read_wins() > game_rounds / 2)
@@ -242,19 +238,19 @@ void end_of_game(Winner winner, IPlayer& player_1, IPlayer& player_2)
 // ===============================================================
 // FUNCTION FOR PREPARING EVERY ROUND
 
-void prepare_round()
+void prepare_round(const IDigital_input& buzzer)
 {
-	digitalWrite(buzzer, HIGH);
+	digitalWrite(buzzer.get_pin(), HIGH);
 	delay(150);
-	digitalWrite(buzzer, LOW);
+	digitalWrite(buzzer.get_pin(), LOW);
 	delay(250);
-	digitalWrite(buzzer, HIGH);
+	digitalWrite(buzzer.get_pin(), HIGH);
 	delay(150);
-	digitalWrite(buzzer, LOW);
+	digitalWrite(buzzer.get_pin(), LOW);
 	delay(250);
-	digitalWrite(buzzer, HIGH);
+	digitalWrite(buzzer.get_pin(), HIGH);
 	delay(400);
-	digitalWrite(buzzer, LOW);
+	digitalWrite(buzzer.get_pin(), LOW);
 }
 
 // ===============================================================
