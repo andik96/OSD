@@ -61,6 +61,9 @@ int main(void)
 {
 	Io_manager pi_manager;
 
+	auto winner = Winner::tie;
+	short game_rounds = 0;
+
 	try
 	{
 		Digital_output buzzer{ pi_manager, get_pins()["buzzer"].get<pin>() };
@@ -72,8 +75,6 @@ int main(void)
 
 		Player player_1{ player_1_button.get_pin(), player_1_led.get_pin(), "P1", 0 };
 		Player player_2{ player_2_button.get_pin(), player_2_led.get_pin(), "P2", 0 };
-		auto winner = Winner::tie;
-		short game_rounds = 0;
 
 
 		game_rounds = setup_game(player_1, player_2);

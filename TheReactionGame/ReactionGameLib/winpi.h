@@ -152,9 +152,9 @@ struct wiringPiNodeStruct
 //	(and others on the Raspberry Pi forums)
 
 
-// Data
+	// Data
 
-// Internal
+	// Internal
 
 int wiringPiFailure(int fatal, const char *message, ...);
 

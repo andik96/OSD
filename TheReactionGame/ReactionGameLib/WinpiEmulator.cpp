@@ -42,7 +42,7 @@ bool Win_pi_emulator::get_state(int pin)
 			return GetAsyncKeyState(VK_F1 + idx) != 0;
 		}
 	}
-	if (outputs_.find(pin) != outputs_.end())
+	if(outputs_.find(pin) != outputs_.end())
 	{
 		return outputs_[pin];
 	}
@@ -50,7 +50,7 @@ bool Win_pi_emulator::get_state(int pin)
 	throw std::logic_error("WINPI: Pin is not configured!");
 }
 
-void Win_pi_emulator::subscribe_falling(int pin, void(*callback)())
+void Win_pi_emulator::subscribe_falling(int pin, void(* callback)())
 {
 	for (int input : inputs_)
 	{
@@ -63,7 +63,7 @@ void Win_pi_emulator::subscribe_falling(int pin, void(*callback)())
 	throw std::logic_error("WINPI: Can't subscribe to pin that is not an input!");
 }
 
-void Win_pi_emulator::subscribe_rising(int pin, void(*callback)())
+void Win_pi_emulator::subscribe_rising(int pin, void(* callback)())
 {
 	for (int input : inputs_)
 	{
@@ -79,13 +79,13 @@ void Win_pi_emulator::subscribe_rising(int pin, void(*callback)())
 Win_pi_emulator::~Win_pi_emulator()
 {
 	poller_active_ = false;
-	//poller_.join();
+	poller_.join();
 }
 
 void Win_pi_emulator::trigger_rising(int i)
 {
 	int pin = inputs_[i];
-	if (rising_callbacks_.find(pin) != rising_callbacks_.end())
+	if(rising_callbacks_.find(pin) != rising_callbacks_.end())
 	{
 		rising_callbacks_[pin]();
 	}
@@ -110,14 +110,14 @@ void Win_pi_emulator::keyboard_poller()
 		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 		const int input_size = inputs_.size();
 
-		for (int i = 0; i < input_size; i++)
+		for(int i = 0; i < input_size; i++)
 		{
 			current_state[i] = GetAsyncKeyState(VK_F1 + i) != 0;
-			if (current_state[i] && !last_state[i])
+			if(current_state[i] && !last_state[i])
 			{
 				trigger_rising(i);
 			}
-			else if (!current_state[i] && last_state[i])
+			else if(!current_state[i] && last_state[i])
 			{
 				trigger_falling(i);
 			}
@@ -127,7 +127,7 @@ void Win_pi_emulator::keyboard_poller()
 	}
 }
 
-Win_pi_emulator::Win_pi_emulator() : poller_active_{ true }
+Win_pi_emulator::Win_pi_emulator() : poller_active_{true}
 {
-	//poller_ = std::thread{ [this] {keyboard_poller(); } };
+	poller_ = std::thread{ [this] {keyboard_poller(); } };
 }
