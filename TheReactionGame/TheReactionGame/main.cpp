@@ -30,6 +30,24 @@
 
 
 // ===============================================================
+// DEFINES
+
+// #define USING_INVERTED_LOGIC
+
+
+// ===============================================================
+// CONSTANTS
+
+#ifdef USING_INVERTED_LOGIC
+const bool pushed = false;
+const bool not_pushed = true;
+#else
+const bool pushed = true;
+const bool not_pushed = false;
+#endif
+
+
+// ===============================================================
 // GLOBAL VARIABLES
 
 nlohmann::json pins_config;
@@ -62,8 +80,13 @@ int main(void)
 	{
 		Digital_output buzzer{ pi_manager, get_pins()["buzzer"].get<pin>() };
 		Digital_output game_led{ pi_manager,get_pins()["game_led"].get<pin>() };
+#ifndef USING_INVERTED_LOGIC
 		Digital_input player_1_button{ pi_manager, get_pins()["player_1_button"].get<pin>(), Resistor::pulldown };
 		Digital_input player_2_button{ pi_manager, get_pins()["player_2_button"].get<pin>(), Resistor::pulldown };
+#else
+		Digital_input player_1_button{ pi_manager, get_pins()["player_1_button"].get<pin>(), Resistor::pullup };
+		Digital_input player_2_button{ pi_manager, get_pins()["player_2_button"].get<pin>(), Resistor::pullup };
+#endif
 		Digital_output player_1_led{ pi_manager,get_pins()["player_1_led"].get<pin>() };
 		Digital_output player_2_led{ pi_manager,get_pins()["player_2_led"].get<pin>() };
 
@@ -111,7 +134,7 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds, const IDigi
 		unsigned short random_t = 0;
 		auto round_winner = Winner::tie;
 		
-		digitalWrite(game_led.get_pin(), LOW);
+		digitalWrite(game_led.get_pin(), pushed);
 		random_t = rand() % 5000 + 5000; // to activate between 5-10 seconds
 		timeout = random_t + max_time_inactive;
 
@@ -136,13 +159,13 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds, const IDigi
 				if (!digitalRead(game_led.get_pin()))
 					digitalWrite(game_led.get_pin(), HIGH);
 
-				if (player_1.read_button_state() == LOW)
+				if (player_1.read_button_state() == pushed)
 				{
 					round_winner = Winner::p1;
 					player_1.add_victory();
 					break;
 				}
-				else if (player_2.read_button_state() == LOW)
+				else if (player_2.read_button_state() == pushed)
 				{
 					round_winner = Winner::p2;
 					player_2.add_victory();
@@ -151,13 +174,13 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds, const IDigi
 			}
 			else
 			{
-				if (player_1.read_button_state() == LOW)
+				if (player_1.read_button_state() == pushed)
 				{
 					round_winner = Winner::p2;
 					player_2.add_victory();
 					break;
 				}
-				else if (player_2.read_button_state() == LOW)
+				else if (player_2.read_button_state() == pushed)
 				{
 					round_winner = Winner::p1;
 					player_1.add_victory();
