@@ -51,21 +51,33 @@ namespace test_reaction_game
 
 			my_manager.reserve(0);
 			Assert::IsTrue(my_manager.is_reserved(0));
+			my_manager.release(0);
 		}
 
 		TEST_METHOD(test_construction2)
 		{
 			Io_manager my_manager{};
-			const pin test_pin = 5;
 
-			my_manager.reserve(test_pin);
-			Assert::IsTrue(static_cast<int>(my_manager.is_reserved(test_pin)) );
+			try
+			{
+				my_manager.reserve(5);
+				my_manager.reserve(3);
+				my_manager.reserve(27);
+				my_manager.reserve(20);				// <- this one will throw an exception, pin does not exist
+			}
+			catch(...)
+			{ }
 
-			/*my_manager.release(5);
-			Assert::IsFalse(my_manager.is_reserved(5));
+			Assert::IsTrue(static_cast<int>(my_manager.is_reserved(5)));
+			Assert::IsTrue(static_cast<int>(my_manager.is_reserved(3)));
+			Assert::IsTrue(static_cast<int>(my_manager.is_reserved(27)));
+			Assert::IsFalse(static_cast<int>(my_manager.is_reserved(20)));
 
-			my_manager.reserve(5);
-			Assert::IsTrue(my_manager.is_reserved(5));*/
+			// test, if uninitialised pin is reserved
+			Assert::IsFalse(static_cast<int>(my_manager.is_reserved(0)));
+			// test, if non-existing pin is reserved
+			Assert::IsFalse(static_cast<int>(my_manager.is_reserved(40)));
+
 		}
 
 	};

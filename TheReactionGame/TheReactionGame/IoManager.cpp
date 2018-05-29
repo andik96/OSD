@@ -8,7 +8,7 @@
 #       WINKLER  Andreas        #
 #                               #
 #   created: 2018/05/02         #
-#   Version: 2018/05/27 - V2.4  #
+#   Version: 2018/05/28 - V2.5  #
 ********************************/
 
 
@@ -39,10 +39,6 @@ Io_manager::Io_manager() = default;
 
 Io_manager::~Io_manager()								// here all the reserved pins will be released again
 {
-	for (pin act_pin : reserved_pins_)
-	{
-		this->release(this->reserved_pins_[act_pin]);
-	}
 }
 
 
