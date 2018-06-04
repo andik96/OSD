@@ -46,7 +46,7 @@ public:
 	bool read_button_state(void) const override;
 	// --------- --------- --------- ---------
 	void set_led_pin(pin led_pin) override;
-	unsigned short read_led_pin(void) const override;
+	pin read_led_pin(void) const override;
 	// ---------
 	void set_led_state(bool led_state) override;
 	bool read_led_state(void) const override;

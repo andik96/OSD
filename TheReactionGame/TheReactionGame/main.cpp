@@ -152,7 +152,14 @@ Winner game(IPlayer& player_1, IPlayer& player_2, short game_rounds, const IDigi
 
 			if (delta >= timeout)
 			{
-				return Winner::timeout;
+				if (player_1.read_wins() > player_2.read_wins())
+					return Winner::p1;
+				else if (player_1.read_wins() < player_2.read_wins())
+					return Winner::p2;
+				else if ((player_1.read_wins() == player_2.read_wins()))
+					return Winner::tie;
+				else
+					return Winner::timeout;
 			}
 			else if (delta >= random_t)
 			{
